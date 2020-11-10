@@ -1,8 +1,10 @@
 ﻿using ChatClient.BuisnessLogic.Library;
+using ChatClient.BuisnessLogic.Library.Communication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
+using System.Net.Sockets;
 
 namespace ChatClient.Gui.ConsoleApplication
 {
@@ -38,6 +40,8 @@ namespace ChatClient.Gui.ConsoleApplication
 
             // Add dependencies
             services.AddSingleton<IConfiguration>(configuration);
+            //services.AddSingleton<TcpClient, TcpClient>();
+            services.AddScoped<ICommunicationHandler, StringCommunicationHandler>();
 
             // Build the service provider and return it
             return services.BuildServiceProvider();
